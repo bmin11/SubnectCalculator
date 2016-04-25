@@ -1,0 +1,133 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SubnetCalculatorClassLibrary_BrandonMin_W0276942
+</name>
+</assembly>
+<members>
+<member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.validateInput(System.String,System.String)">
+	<summary>
+ Checks if both network address and the number of host per subnet is legal
+ 
+ </summary>
+	<param name="networkAddress">User input for Network Address</param>
+	<param name="numberOfHostPerSubnet">User input for Number of host per subnet</param>
+	<returns>If both inputs are legal, the function returns true. Else, returns false</returns>
+	<remarks>Usually, validation should be done for seperate functions. 
+ However, I wanted the validation to be done in a single function, so each function will only worry of the calculation and not clutter up
+ I recognize that this is not practical for longer and more complicated calculator</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateSubnetSize(System.Int32)">
+	<summary>
+ Calculates and returns the subnet size for given number of hosts per subnet
+ </summary>
+	<param name="numberOfHostsPerSubnet">User input for Number of host per subnet</param>
+	<returns>Returns subnet size in integer</returns>
+	<remarks></remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateDecimalOctets(System.String)">
+	<summary>
+ Processes the network address in decimal octet notation
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<returns>Returns the network address in decimal notation as string (eg. "192.168.0.0")</returns>
+	<remarks>Validations are already taken care of with above function validationInput()
+ .......I'm sorry</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateDecimalAddress(System.String)">
+	<summary>
+ Calculates the network address in decimal (whole number)
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<returns>Returns the decimal of the network address As Long (eg. 3232235520)</returns>
+	<remarks>It may return a large number that requires int64</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateBinaryAddress(System.String)">
+	<summary>
+ Processes the ip address in binary notation
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<returns>Returns the network address in binary notation as string (eg. "11000000.11111111.11111111.00000000")</returns>
+	<remarks></remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateHexAddress(System.String)">
+	<summary>
+ Processes the ip address in hexadecimal notation
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<returns>Returns the network address in binary notation as string (eg. "C0.A8.0.0")</returns>
+	<remarks>Hex() converts the integer to hexadecimal as String</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateNetworkClass(System.String)">
+	<summary>
+ Processes the network class
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<returns>Returns a Char that represents the network class</returns>
+	<remarks>ipClassRanges() As Integer = {126, 191, 223}
+          ipClasses() As Char = {"A", "B", "C"}</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateNumberOfIPAddresses(System.String)">
+	<summary>
+ Calculates the number of ip addresses available with the network address
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<returns>Returns the number of ip addresses as integer</returns>
+	<remarks></remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateSubnetMask(System.Int32)">
+	<summary>
+ Calculates the subnet mask of the network in decimal and CIDR notation for subnetting with the inputted number of hosts per subnet
+ </summary>
+	<param name="numberOfHostsPerSubnet">User input for Number of host per subnet</param>
+	<returns>Returns the subnet mask as string (eg. "255.255.255.0 or /28")</returns>
+	<remarks></remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateBinaryMask(System.Int32)">
+	<summary>
+ Processes the subnet mask in binary notation with the inputted number of hosts per subnet
+ </summary>
+	<param name="numberOfHostsPerSubnet">User input for Number of host per subnet</param>
+	<returns>Returns the subnet mask as string (eg. "11111111.11111111.11100000.00000000")</returns>
+	<remarks></remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateNumberOfSubnets(System.String,System.Int32)">
+	<summary>
+ Calculates the number of subnets needed for the inputted network and host per subnet
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<param name="numberOfHostsPerSubnet">User input for Number of host per subnet</param>
+	<returns>Returns the number of subnets in the network</returns>
+	<remarks># of subnet = # of addresses / size of each subnets</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.CalculateSubnetList(System.String,System.Int32)">
+	<summary>
+ Processes all IP addresses ranges (subnets) in the network with the inputted network address and number of hosts per subnet
+ </summary>
+	<param name="ipAddress">User input for Network Address</param>
+	<param name="numberOfHostsPerSubnet">User input for Number of host per subnet</param>
+	<returns>Returns a string array of all IP ranges (eg. {"150.43.0.0 - 150.43.1.255", "150.43.2.0 - 150.43.3.255", ... })</returns>
+	<remarks>This function is very proccess intensive and it may make the program to freeze if inputs are extreme (eg. 117.0.0.0 with 2 hosts per subnet)
+          I'm suspecting that the proccess of storing all strings into an array is taking up all the proccess power
+          In the future, I may work on to return a single line of range instead of an array of all ranges</remarks>
+</member><member name="M:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions.convertToOctet(System.Int64)">
+	<summary>
+ Converts the decimal into four decimal octets
+ </summary>
+	<param name="decimalAddress">IP address in decimal (eg. 2519334912)</param>
+	<returns>Returns an array of Long which represents the IP address in decimal octet (eg. {150, 43, 0, 0})</returns>
+	<remarks>I'm not too sure how proccess intensive this function is</remarks>
+</member><member name="T:SubnetCalculatorClassLibrary_BrandonMin_W0276942.Functions">
+	<summary>
+ Functions for calculating sub network ranges and setting
+ 
+ Name: Brandon Min
+ Date: 2014/12/11
+ </summary>
+	<remarks></remarks>
+</member><member name="P:SubnetCalculatorClassLibrary_BrandonMin_W0276942.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:SubnetCalculatorClassLibrary_BrandonMin_W0276942.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:SubnetCalculatorClassLibrary_BrandonMin_W0276942.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>
